@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component,  OnInit } from '@angular/core';
 import { Image } from 'src/app/Image';
 import { ImagesService } from 'src/app/service/images.service';
 
@@ -16,18 +16,13 @@ export class BodyComponent implements OnInit {
  data: Image []=[];
  modal:any;
  
- @Output()btnClick=new EventEmitter();
 
   constructor(private imagesService:ImagesService) { }
 
   ngOnInit(): void {
     this.imagesService.getImages().subscribe(data => {
       this.data = data
-      console.log(this.data)
     })
   }
-  onbtnClick(){
-    this.btnClick.emit();
-    this.modal.show();
-  }
+  
 }
