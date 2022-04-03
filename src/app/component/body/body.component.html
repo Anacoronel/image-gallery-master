@@ -1,0 +1,40 @@
+<div style="text-align:center">
+    <h1>
+      Bienvenido a la Galería de Imágenes de KiuSystem
+    </h1>
+    
+   </div>
+   <div class="gallery" *ngFor="let image of data">
+    <a href="#" type="button" class="btn"  data-bs-toggle="modal" data-bs-target="#exampleModal" ><!-- Button trigger modal -->
+     
+    <img [src]="image.thumbnailUrl" width="300" height="200">
+  
+    </a>
+    
+    <div class="desc">{{image.title}}</div>
+    <!-- Modal -->
+ <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">{{image.title}}</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="row my-auto">
+                <a class="portfolio-link" href="#exampleModal" data-bs-toggle="modal">
+                    
+                    <img id="size" [src]="image.url"  alt="">
+                </a>
+            
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+</div>
+  
+  
+   </div>
