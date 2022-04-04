@@ -41,7 +41,7 @@ export class BodyComponent implements OnInit {
     private imagesService: ImagesService, private cdr: ChangeDetectorRef, private modalService: BsModalService,
     ) { }
     openModal(template: TemplateRef<any>) {
-      this.modalRef = this.modalService.show(template);
+      this.modalRef = this.modalService.show(template,{ class: 'modal-lg' });
     }
 
   onDrop(event: CdkDragDrop<string[]>) {

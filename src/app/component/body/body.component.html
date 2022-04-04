@@ -1,20 +1,17 @@
 <div class="container">
-  <div class="card-group">
-    <div class="card">
 
-      <div class="card-body">
         <div>
-          <h3 class="card-title">Bienvenido a la Galeria de Imagenes de KiuSystem <a href="#" ><i class="fa fa-search"
-                (click)="openModal(template)"></i></a>
+          <h3 class="card-title">Bienvenido a la Galeria de Imagenes de KiuSystem 
           </h3>
         </div>
 
-        <h4 class="example-h2"></h4>
-
-        <ul class="items-list educacion" class=" row">
-          <li *ngFor="let image of image">
-            <div class="col-2 m-4">
-           <img [src]="image.thumbnailUrl"></div>
+        <ul class="desc" class=" row">
+          <li class="col-xs-4 col-sm-4 col-md-3 col-lg-2 col-xl-2" *ngFor="let image of image">
+            <div class="im col-xs-8 col-sm-4 col-md-4 col-lg-3" >
+           <img [src]="image.thumbnailUrl">
+           <a href="#" ><i class="fa fa-search"
+            (click)="openModal(template)"></i></a>
+          </div>
            <div class="col-10">
 
             <p>{{image.title}}</p>
@@ -31,7 +28,8 @@
                   </i>
                 </div>
                 <div class="modal-body">
-                  <input type="hidden" class="form-control"  name="id" [(ngModel)]="image.url" />
+                  <img [src]="image.url"/>
+
                  
                 </div>
 
@@ -44,7 +42,4 @@
             </ul>
 
             </div>
-            </div>
-  </div>
-</div>
-            
+     
