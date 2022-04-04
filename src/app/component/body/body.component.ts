@@ -1,6 +1,13 @@
-import { Component,  OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, Input, OnInit, TemplateRef } from '@angular/core';
 import { Image } from 'src/app/Image';
 import { ImagesService } from 'src/app/service/images.service';
+import { FormControl, FormGroup, FormBuilder } from '@angular/forms';
+
+
+import { CdkDragDrop, moveItemInArray, CdkDrag, CdkDropList, transferArrayItem } from '@angular/cdk/drag-drop';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import { Subscription } from 'rxjs';
+
 
 @Component({
   selector: 'app-body',
@@ -9,20 +16,47 @@ import { ImagesService } from 'src/app/service/images.service';
 })
 export class BodyComponent implements OnInit {
 
-  title :string="";
- thumbnailUrl:string="";
- href:string="";
-  url:string="";
- data: Image []=[];
- modal:any;
- 
 
-  constructor(private imagesService:ImagesService) { }
+  image: Image[] = [];
+  title: string = "";
+  thumbnailUrl: string = "";
+  href: string = "";
+  url: string = "";
+  modalRef?: BsModalRef;
+  suscription!: Subscription;
+  template!: TemplateRef<any>;
+  form: FormGroup = new FormGroup({
+    id: new FormControl(''),
+    title: new FormControl(''),
+    href: new FormControl(''),
+    url: new FormControl(''),
+    thumbnailUrl: new FormControl(''),
+  });
+
+
+
+
+
+  constructor(     private FormBuilder: FormBuilder,
+    private imagesService: ImagesService, private cdr: ChangeDetectorRef, private modalService: BsModalService,
+    ) { }
+    openModal(template: TemplateRef<any>) {
+      this.modalRef = this.modalService.show(template);
+    }
+
+  onDrop(event: CdkDragDrop<string[]>) {
+    moveItemInArray(this.image, event.previousIndex, event.currentIndex);
+  }
+
 
   ngOnInit(): void {
-    this.imagesService.getImages().subscribe(data => {
-      this.data = data
+    this.imagesService.getImages().subscribe(image => {
+      this.image = image;
     })
-  }
-  
-}
+
+   
+
+
+
+
+}}
