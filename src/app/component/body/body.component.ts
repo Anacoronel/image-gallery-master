@@ -45,7 +45,7 @@ export class BodyComponent implements OnInit {
       this.modalRef = this.modalService.show(template,{ class: 'modal-lg' });
     }
 
-  onDrop(event: CdkDragDrop<string[]>) {
+  onDrop(event: CdkDragDrop<Image[]>) {
     moveItemInArray(this.image, event.previousIndex, event.currentIndex);
    
 
@@ -60,23 +60,5 @@ export class BodyComponent implements OnInit {
 
 }
 
-drop(event: CdkDragDrop<string[]>) {
-  if (event.previousContainer === event.container) {
-    console.log('dropped Event', `> dropped '${event.item.data}' into '${event.container.id}'`);
-    moveItemInArray(
-      event.container.data,
-      event.previousIndex,
-      event.currentIndex
-    );
-  } else {
-    console.log('dropped Event', `> dropped '${event.item.data}' into '${event.container.id}'`);
-    transferArrayItem(
-      event.previousContainer.data,
-      event.container.data,
-      event.previousIndex,
-      event.currentIndex
-    );
-  }
 
-}
 }
