@@ -18,6 +18,7 @@ export class BodyComponent implements OnInit {
 
 
   image: Image[] = [];
+  amount:number=0;
   title: string = "";
   thumbnailUrl: string = "";
   href: string = "";
@@ -46,17 +47,36 @@ export class BodyComponent implements OnInit {
 
   onDrop(event: CdkDragDrop<string[]>) {
     moveItemInArray(this.image, event.previousIndex, event.currentIndex);
-  }
+   
 
+  }
+  
 
   ngOnInit(): void {
     this.imagesService.getImages().subscribe(image => {
-      this.image = image;
-    })
+      this.image = image;   
+    });
+  
 
-   
+}
 
+drop(event: CdkDragDrop<string[]>) {
+  if (event.previousContainer === event.container) {
+    console.log('dropped Event', `> dropped '${event.item.data}' into '${event.container.id}'`);
+    moveItemInArray(
+      event.container.data,
+      event.previousIndex,
+      event.currentIndex
+    );
+  } else {
+    console.log('dropped Event', `> dropped '${event.item.data}' into '${event.container.id}'`);
+    transferArrayItem(
+      event.previousContainer.data,
+      event.container.data,
+      event.previousIndex,
+      event.currentIndex
+    );
+  }
 
-
-
-}}
+}
+}

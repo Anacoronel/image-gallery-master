@@ -1,6 +1,15 @@
 .cdk-drag-animating{
     transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
 }
+.cdk-drag-placeholder {
+    /* setting opacity to zero makes a blank space between list items during drag preview */
+    opacity: 0;
+  }
+  .cdk-drag-animating {
+    /* this is the animation that fires for the drop */
+    transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+  }
+  
 ul{
     list-style:   none;
     display:flex;
